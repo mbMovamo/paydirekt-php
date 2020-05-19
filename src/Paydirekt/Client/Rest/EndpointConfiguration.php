@@ -6,12 +6,12 @@ namespace Paydirekt\Client\Rest;
 /**
  * Rest Endpoints.
  */
-final class EndpointConfiguration
+class EndpointConfiguration
 {
-    const API_KEY = "e81d298b-60dd-4f46-9ec9-1dbc72f5b5df";
-    const API_SECRET = "GJlN718sQxN1unxbLWHVlcf0FgXw2kMyfRwD0mgTRME=";
-
-    const ENDPOINT_SWITCH = "sandbox";
+    const ENDPOINT_SANDBOX = 'sandbox';
+    const ENDPOINT_PRODUCTION = 'production';
+    
+    static $endpoint_switch = self::ENDPOINT_SANDBOX;
 
     const SANDBOX_CHECKOUT_ENDPOINT = "https://api.sandbox.paydirekt.de/api/checkout/v1/checkouts";
     const PRODUCTION_CHECKOUT_ENDPOINT = "https://api.paydirekt.de/api/checkout/v1/checkouts";
@@ -22,6 +22,9 @@ final class EndpointConfiguration
     const SANDBOX_TRANSACTION_REPORTS_ENDPOINT = "https://api.sandbox.paydirekt.de/api/reporting/v1/reports/transactions";
     const PRODUCTION_TRANSACTION_REPORTS_ENDPOINT = "https://api.paydirekt.de/api/reporting/v1/reports/transactions";
 
+    public static function setEndpoint($endpoint) {
+        self::$endpoint_switch = $endpoint;
+    }
 
     public static function getCheckoutEndpoint() {
         return self::isProduction() ? self::PRODUCTION_CHECKOUT_ENDPOINT : self::SANDBOX_CHECKOUT_ENDPOINT;
