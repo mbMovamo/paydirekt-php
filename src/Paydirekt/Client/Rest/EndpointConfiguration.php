@@ -36,7 +36,7 @@ final class EndpointConfiguration
     }
 
     private static function isProduction() {
-        return "production" == self::ENDPOINT_SWITCH;
+        return "production" == self::$endpoint_switch;
     }
 
     public static function getCaFile() {
